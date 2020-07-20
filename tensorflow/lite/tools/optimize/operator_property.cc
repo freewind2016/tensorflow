@@ -88,6 +88,12 @@ OperatorProperty GetOperatorProperty(const ModelT* model, int subgraph_index,
       property.restrict_same_input_output_scale = true;
       property.version = 2;
       break;
+    case BuiltinOperator_BATCH_MATMUL: {
+      property.inputs = {{0, {}}, {1, {}}};
+      property.outputs = {{0, {}}};
+      property.version = 2;
+      break;
+    }
     case BuiltinOperator_BATCH_TO_SPACE_ND:
     case BuiltinOperator_SPACE_TO_BATCH_ND:
     case BuiltinOperator_SPACE_TO_DEPTH:
@@ -964,6 +970,13 @@ OperatorProperty GetOperatorProperty(const ModelT* model, int subgraph_index,
       property.version = 1;
       break;
     case BuiltinOperator_MIRROR_PAD:
+      property.inputs = {{0, {}}};
+      property.outputs = {{0, {}}};
+      property.restrict_same_input_output_scale = true;
+      property.version = 2;
+      break;
+    case BuiltinOperator_REDUCE_MAX:
+    case BuiltinOperator_REDUCE_MIN:
       property.inputs = {{0, {}}};
       property.outputs = {{0, {}}};
       property.restrict_same_input_output_scale = true;
